@@ -1,24 +1,21 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import NoName from './NoName';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type="text" />
+      <NoName name="홍길동" />
+      <NoName />
+      <NoName />
+      <NoName />
+      <NoName />
+      <div>
+        <h1>메롱메롱</h1>
+      </div>
+    </>
   );
 }
 
