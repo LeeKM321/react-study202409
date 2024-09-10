@@ -20,11 +20,9 @@ const Expenses = ({ expenses }) => {
     (item) => item.date.getFullYear().toString() === filteredYear,
   );
 
-  // 조건부 렌더링을 위한 변수 -> 기본값으로 없다고 깔아놓음.
+  // 조건부 렌더링을 위한 변수
   let expenseContent = <p>아직 등록된 지출이 없습니다.</p>;
 
-  // 혹시 필터링 된 결과가 하나라도 존재한다면?
-  // 필터링 된 결과를 ExpenseItem으로 맵핑하자. (원래 우리가 하던 일.)
   if (filteredItem.length > 0) {
     expenseContent = filteredItem.map((item) => (
       <ExpenseItem
