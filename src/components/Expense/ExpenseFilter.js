@@ -1,8 +1,12 @@
 import React from 'react';
 import './ExpenseFilter.css';
 
-const ExpenseFilter = () => {
-  const dropdownChangeHandler = (e) => {};
+const ExpenseFilter = ({ onChangeFilter }) => {
+  const dropdownChangeHandler = (e) => {
+    const selectedYear = e.target.value;
+    // 선택된 년도를 필터링할 곳으로 보내자. -> 부모 -> 함수를 전달받아야 한다.
+    onChangeFilter(selectedYear);
+  };
 
   return (
     <div className='expenses-filter'>
