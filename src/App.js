@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import ExpenseItem from './components/ExpenseItem';
 import Expenses from './components/Expenses';
+import NoName from './NoName';
 
 function App() {
   const expenses = [
@@ -13,8 +14,14 @@ function App() {
 
   return (
     <>
-      <h2>리액트 시작하기</h2>
       <Expenses expenses={expenses} />
+      <NoName>
+        <ul>
+          <li>사과</li>
+          <li>복숭아</li>
+          <li>포도</li>
+        </ul>
+      </NoName>
     </>
   );
 }

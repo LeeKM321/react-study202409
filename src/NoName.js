@@ -1,10 +1,17 @@
 import React from 'react';
+import Card from './components/UI/Card';
 
-const NoName = () => {
+const NoName = (props) => {
+  console.log('NoName Component!');
+  console.log('props: ', props);
+
   return (
-    <div>
-      <h1>하이하이 xxx님.</h1>
-    </div>
+    <Card className='rectangle'>
+      <div>
+        {props.children}
+        Hello React!
+      </div>
+    </Card>
   );
 };
 
