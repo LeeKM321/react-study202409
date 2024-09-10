@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ExpenseItem from './components/Expense/ExpenseItem';
 import Expenses from './components/Expense/Expenses';
@@ -11,10 +11,22 @@ function App() {
     { id: 2, title: '양파', price: 5000, date: new Date(2023, 6, 20) },
   ];
 
+  // 지출 객체 배열을 상태변수로 관리
+  const [expenseList, setExpenseList] = useState(expenses);
+
+  // ExpenseForm에게 내려보낼 함수
+  const addExpenseHandler = (newEx) => {
+    const modifyEx = {
+      ...newEx,
+      id: expenseList[expenseList.length - 1].id + 1,
+    };
+    setExpenseList([...expenseList, modifyEx]);
+  };
+
   return (
     <>
-      <NewExpense />
-      <Expenses expenses={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses expenses={expenseList} />
     </>
   );
 }
