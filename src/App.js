@@ -1,20 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import NoName from './NoName';
+import ExpenseItem from './components/ExpenseItem';
 
 function App() {
+  const expenses = [
+    { id: 1, title: '냠냠치킨', price: 19000, date: new Date(2023, 6, 19) },
+    { id: 2, title: '양파', price: 5000, date: new Date(2023, 6, 20) },
+    { id: 3, title: '포도', price: 20000, date: new Date(2023, 6, 21) },
+    { id: 4, title: '오렌지', price: 15000, date: new Date(2023, 6, 22) },
+  ];
+
   return (
     <>
-      <input type="text" />
-      <NoName name="홍길동" />
-      <NoName />
-      <NoName />
-      <NoName />
-      <NoName />
-      <div>
-        <h1>메롱메롱</h1>
-      </div>
+      <h2>리액트 시작하기</h2>
+      <ExpenseItem
+        title={expenses[0].title}
+        price={expenses[0].price}
+        date={expenses[0].date}
+      />
     </>
   );
 }
