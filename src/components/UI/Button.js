@@ -27,9 +27,9 @@ const Button = styled.button`
 
 // styled-components를 사용하면서 props를 처리하고 싶다면
 // 중간 단계의 컴포넌트를 하나 더 추가하면 됩니다.
-const ButtonComponent = ({ type, onclick, children }) => {
+const ButtonComponent = ({ type, onclick, children, disabled }) => {
   return (
-    <Button type={type} onClick={onclick}>
+    <Button type={type} onClick={onclick} disabled={disabled}>
       {children}
     </Button>
   );
