@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../../UI/Card';
 import styles from './Login.module.css';
 import ButtonComponent from '../../UI/Button';
@@ -11,28 +11,40 @@ const Login = ({ onLogin }) => {
   const [enteredPw, setEnteredPw] = useState('');
 
   // 이메일 입력이 정상적인지를 확인
-  const [emailIsValid, setEmailIsValid] = useState();
+  const [emailIsValid, setEmailIsValid] = useState(true);
 
   // 패스워드 입력도 정상적인지 확인
-  const [pwIsValid, setPwIsValid] = useState();
+  const [pwIsValid, setPwIsValid] = useState(true);
 
   // 이메일, 패스워드가 둘 다 동시에 정상적인 상태인지 확인.
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(() => {
+    console.log('useEffect called in Login.js!');
+
+    // setTimeout을 사용해서 유효성 검증을 1초 뒤에 실행하도록 작성.
+    // 1초 이내에 새로운 입력값이 들어온다면? -> 상태 변경 -> useEffect가 다시 실행됨.
+    const timer = setTimeout(() => {
+      console.log('setTimeout 호출!');
+      setFormIsValid(enteredEmail.includes('@') && enteredPw.trim().length > 6);
+    }, 1000);
+
+    // cleanup 함수 - 컴포넌트가 업데이트 되거나 없어지기 직전에 실행.
+    // 사용자가 1초 이내에 추가 입력 -> 상태 변경(컴포넌트 업데이트) -> 위에 예약한 timer를 취소해라.
+    return () => {
+      clearTimeout(timer);
+    };
+    // 의존성 배열에 상태변수를 넣어주면 그 상태변수가 변경될 때마다 useEffect가 재실행됨.
+  }, [enteredEmail, enteredPw]);
+
   // 이메일이 변경될 때마다 실행할 핸들러
   const emailChangeHandler = (e) => {
     setEnteredEmail(e.target.value);
-
-    setFormIsValid(e.target.value.includes('@') && enteredPw.trim().length > 6);
   };
 
   // 비밀번호가 변경될 때마다 실행할 핸들러
   const passwordChangeHandler = (e) => {
     setEnteredPw(e.target.value);
-
-    setFormIsValid(
-      e.target.value.trim().length > 6 && enteredEmail.includes('@'),
-    );
   };
 
   const validateEmailHandler = () => {
