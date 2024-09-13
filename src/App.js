@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MainHeader from './components/SideEffect/MainHeader/MainHeader';
 import Login from './components/SideEffect/Login/Login';
 import Home from './components/SideEffect/Home/Home';
+import AuthContext from './components/SideEffect/store/auth-context';
 
 const App = () => {
   // 로그인 상태를 기억하는 변수
@@ -44,13 +45,13 @@ const App = () => {
   };
 
   return (
-    <>
-      <MainHeader isLoggedIn={isLoggedIn} onLogout={logoutHandler} />
+    <AuthContext.Provider value={{ isLoggedIn }}>
+      <MainHeader onLogout={logoutHandler} />
       <main>
         {isLoggedIn && <Home />}
         {!isLoggedIn && <Login onLogin={loginHandler} />}
       </main>
-    </>
+    </AuthContext.Provider>
   );
 };
 
